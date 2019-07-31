@@ -13,11 +13,14 @@ chrome.runtime.onMessage.addListener(msg => {
     }
 });
 
-function changeFontSize(change, element = document.body) {
-    let currentSize = window.getComputedStyle(element).getPropertyValue('font-size');
-    element.style.fontSize = (parseFloat(currentSize) + change) + 'px';
-    for (let child of element.children) {
-        changeFontSize(change, child);
+function changeFontSize(change) {
+    let elements = document.querySelectorAll("*");
+    let newFontSizes = [];
+    for (let x = 0; x < elements.length; x++) {
+        newFontSizes.push((parseFloat(window.getComputedStyle(elements[x]).getPropertyValue('font-size')) + change) + 'px');
+    }
+    for (let x = 0; x < elements.length; x++) {
+        elements[x].style.fontSize = newFontSizes[x];
     }
 }
 
