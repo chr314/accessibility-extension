@@ -1,0 +1,1 @@
+# Accessibility Helper Browser Extension
